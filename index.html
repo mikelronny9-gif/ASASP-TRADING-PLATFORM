@@ -346,6 +346,55 @@ canvas{display:block;max-width:100%}
 
 
 .axasp-tx-row{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;border-bottom:1px solid #edf3f0}.axasp-tx-row:last-child{border-bottom:0}.axasp-tx-row div{display:flex;flex-direction:column;gap:2px}.axasp-tx-row strong{font-size:9px;color:#55736c}.axasp-tx-row span{font-size:8px;color:#9aaba6}.axasp-tx-row>b{font-size:9px;color:#19a37f}.axasp-tx-row>b:empty{display:none}
+/* AXASP logged-in workspace: dashboard-first layout */
+body.axasp-app-mode{background:#f3f8f6;color:#173a33}
+body.axasp-app-mode .navbar{background:#ffffff;border-bottom:1px solid #dceae5;box-shadow:0 2px 14px rgba(21,105,84,.06)}
+body.axasp-app-mode .nav-logo{color:#16a37f}
+body.axasp-app-mode .nav-logo span{color:#23453e}
+body.axasp-app-mode .nav-right .text-sm{color:#58746d!important}
+body.axasp-app-mode .btn-outline{background:#fff;border-color:#cfe2dc;color:#48675f}
+body.axasp-app-mode .btn-outline:hover{background:#eaf8f3;border-color:#53c9a8;color:#118b6e}
+body.axasp-app-mode .main-content{margin-left:0;padding:24px;min-height:calc(100vh - 60px);background:#f3f8f6}
+body.axasp-app-mode .sidebar{display:none!important}
+body.axasp-app-mode .sidebar-toggle{display:none!important}
+body.axasp-app-mode .app-section:not(.axasp-dashboard){color:#23453e}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .card{background:#fff;border-color:#dceae5;box-shadow:0 3px 16px rgba(30,102,84,.05)}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .form-control{background:#fbfefd;border-color:#d2e5df;color:#23453e}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .form-control:focus{border-color:#39b995;box-shadow:0 0 0 3px rgba(57,185,149,.12)}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .tabs{background:#eaf7f3}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .table-wrap{background:#fff}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) table{color:#34564e}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) th{background:#eef8f5;color:#53746b}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) td{border-color:#e7f0ed}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .page-title{color:#173a33}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .page-subtitle{color:#78908a}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .text-muted{color:#78908a}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .text-gold{color:#159f80}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .btn-gold{background:#36bd98;color:#fff}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .btn-gold:hover{background:#20a982;box-shadow:0 6px 18px rgba(54,189,152,.25)}
+body.axasp-app-mode .app-section:not(.axasp-dashboard) .btn-outline:hover{background:#eaf8f3;border-color:#49c6a4}
+body.axasp-app-mode .footer{background:#fff;border-color:#dceae5}
+.axasp-dashboard .axasp-tools-card{max-width:760px;margin:0 auto 10px;border:1px solid #e0ebe7;border-radius:12px;background:#fff;box-shadow:0 3px 14px rgba(35,91,76,.04);overflow:hidden}
+.axasp-dashboard .axasp-tools-head{padding:11px 13px;border-bottom:1px solid #edf3f0;display:flex;align-items:center;justify-content:space-between}
+.axasp-dashboard .axasp-tools-head h2{font-size:11px;color:#31514a;margin:0;font-weight:800}
+.axasp-dashboard .axasp-tools-head span{font-size:8px;color:#8aa19a}
+.axasp-dashboard .axasp-all-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#edf3f0}
+.axasp-dashboard .axasp-all-action{min-height:64px;background:#fff;display:flex;align-items:center;gap:9px;padding:10px 12px;text-align:left;color:#58756e}
+.axasp-dashboard .axasp-all-action:hover{background:#f1fbf8;color:#149d7d}
+.axasp-dashboard .axasp-all-action-icon{width:28px;height:28px;flex:0 0 28px;border-radius:8px;display:grid;place-items:center;background:#e1f8f0;color:#16a27f;font-size:14px;font-weight:800}
+.axasp-dashboard .axasp-all-action b{display:block;font-size:9px;color:#34574f}.axasp-dashboard .axasp-all-action small{display:block;font-size:7px;color:#91a59f;margin-top:2px}
+.axasp-dashboard .axasp-admin-tools{display:none}
+.axasp-dashboard .axasp-market-strip{max-width:760px;margin:0 auto 10px;overflow:hidden;border:1px solid #dceae5;border-radius:10px;background:#fff}
+.axasp-dashboard .axasp-market-track{display:flex;width:max-content;animation:axaspTicker 26s linear infinite}
+.axasp-dashboard .axasp-market-strip:hover .axasp-market-track{animation-play-state:paused}
+.axasp-dashboard .axasp-market-item{display:flex;align-items:center;gap:7px;padding:8px 14px;border-right:1px solid #edf3f0;white-space:nowrap;font-size:8px;color:#718981}
+.axasp-dashboard .axasp-market-item strong{font-size:9px;color:#34564e}.axasp-dashboard .axasp-market-item em{font-style:normal;color:#18a37f;font-weight:800}.axasp-dashboard .axasp-market-item em.down{color:#d87575}
+@keyframes axaspTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.axasp-dashboard .axasp-quotes-grid{grid-template-columns:repeat(3,1fr)}
+.axasp-dashboard .axasp-quote{min-height:56px}
+@media(max-width:760px){.axasp-dashboard .axasp-all-actions{grid-template-columns:repeat(3,1fr)}.axasp-dashboard .axasp-quotes-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.axasp-dashboard .axasp-all-actions{grid-template-columns:repeat(2,1fr)}.axasp-dashboard .axasp-quotes-grid{grid-template-columns:1fr}.axasp-dashboard .axasp-market-item{padding:8px 11px}}
+
 </style>
 </head>
 <body>
@@ -382,7 +431,7 @@ canvas{display:block;max-width:100%}
       <button class="btn btn-gold btn-sm" onclick="navigate('register')">Sign Up</button>
     </div>
     <div class="nav-right hidden" id="nav-user">
-      <span id="nav-username" class="text-sm font-semi" style="color:var(--muted);padding:0 4px"></span>
+      <button onclick="showSection('profile')" class="btn btn-outline btn-sm" style="padding:6px 10px"><span id="nav-username" class="text-sm font-semi" style="padding:0 4px"></span></button>
       <button class="btn btn-outline btn-sm" onclick="confirmLogout()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         Logout
@@ -618,87 +667,7 @@ canvas{display:block;max-width:100%}
 
 <!-- ===== APP LAYOUT ===== -->
 <div id="page-app" class="page">
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-inner">
-      <div class="sidebar-section">
-        <div class="sidebar-label">Main</div>
-        <div class="sidebar-link" onclick="showSection('dashboard')" data-section="dashboard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
-        </div>
-        <div class="sidebar-link" onclick="showSection('portfolio')" data-section="portfolio">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V10l7-7 7 7v10"/></svg>Portfolio
-        </div>
-        <div class="sidebar-link" onclick="showSection('trading')" data-section="trading">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>Trading Charts
-        </div>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Funds</div>
-        <div class="sidebar-link" onclick="showSection('deposit')" data-section="deposit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Deposit
-        </div>
-        <div class="sidebar-link" onclick="showSection('withdraw')" data-section="withdraw">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>Withdraw
-        </div>
-        <div class="sidebar-link" onclick="showSection('transactions')" data-section="transactions">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Transactions
-        </div>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Account</div>
-        <div class="sidebar-link" onclick="showSection('notifications')" data-section="notifications">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-          Notifications<span class="badge badge-gold" id="notif-badge" style="display:none">0</span>
-        </div>
-        <div class="sidebar-link" onclick="showSection('referral')" data-section="referral">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Referral
-        </div>
-        <div class="sidebar-link" onclick="showSection('spin')" data-section="spin">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          Spin &amp; Win<span class="badge badge-green" style="margin-left:auto;font-size:10px;padding:2px 7px" id="spin-badge">Free</span>
-        </div>
-        <div class="sidebar-link" onclick="showSection('profile')" data-section="profile">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile &amp; KYC
-        </div>
-        <div class="sidebar-link" onclick="showSection('settings')" data-section="settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings
-        </div>
-        <div class="sidebar-link" onclick="showSection('support')" data-section="support">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Support
-        </div>
-      </div>
-      <div class="sidebar-section" id="admin-nav" style="display:none">
-        <div class="sidebar-label" style="color:var(--gold)">Admin Panel</div>
-        <div class="sidebar-link" onclick="showSection('admin')" data-section="admin">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Admin Dashboard
-        </div>
-        <div class="sidebar-link" onclick="showSection('admin-users')" data-section="admin-users">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Manage Users
-        </div>
-        <div class="sidebar-link" onclick="showSection('admin-wallets')" data-section="admin-wallets">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>Wallet Addresses
-        </div>
-        <div class="sidebar-link" onclick="showSection('admin-transactions')" data-section="admin-transactions">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Transactions
-        </div>
-        <div class="sidebar-link" onclick="showSection('admin-kyc')" data-section="admin-kyc">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>KYC Review
-        </div>
-        <div class="sidebar-link" onclick="showSection('admin-profits')" data-section="admin-profits">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg>Add Profit
-        </div>
-        <div class="sidebar-link" onclick="showSection('admin-notifications')" data-section="admin-notifications">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Notifications
-        </div>
-      </div>
-      <div class="sidebar-bottom">
-        <div class="sidebar-link" style="color:var(--red)" onclick="confirmLogout()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          Sign Out
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="sidebar" id="sidebar" aria-hidden="true"></div>
 
   <div class="main-content" id="main-content">
 
@@ -741,6 +710,56 @@ canvas{display:block;max-width:100%}
         <button class="axasp-action" onclick="showSection('notifications')"><span class="axasp-action-icon">▤</span><span>Messages</span></button>
       </div>
 
+      <div class="axasp-tools-card">
+        <div class="axasp-tools-head"><h2>All Account Functions</h2><span>Everything in one place</span></div>
+        <div class="axasp-all-actions">
+          <button class="axasp-all-action" onclick="showSection('portfolio')"><span class="axasp-all-action-icon">◫</span><span><b>Portfolio</b><small>Investments & performance</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('trading')"><span class="axasp-all-action-icon">⌁</span><span><b>Trading Charts</b><small>Markets & analysis</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('deposit')"><span class="axasp-all-action-icon">↓</span><span><b>Deposit</b><small>Add funds</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('withdraw')"><span class="axasp-all-action-icon">↑</span><span><b>Withdraw</b><small>Request withdrawal</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('transactions')"><span class="axasp-all-action-icon">▣</span><span><b>Transactions</b><small>Full activity history</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('notifications')"><span class="axasp-all-action-icon">♧</span><span><b>Notifications</b><small>Account messages</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('referral')"><span class="axasp-all-action-icon">◎</span><span><b>Referral</b><small>Invite & rewards</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('spin')"><span class="axasp-all-action-icon">◌</span><span><b>Spin & Win</b><small>Available rewards</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('profile')"><span class="axasp-all-action-icon">●</span><span><b>Profile & KYC</b><small>Identity & account</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('settings')"><span class="axasp-all-action-icon">⚙</span><span><b>Settings</b><small>Preferences & security</small></span></button>
+          <button class="axasp-all-action" onclick="showSection('support')"><span class="axasp-all-action-icon">?</span><span><b>Support</b><small>Get assistance</small></span></button>
+          <button class="axasp-all-action" onclick="confirmLogout()"><span class="axasp-all-action-icon">↪</span><span><b>Sign Out</b><small>Securely log out</small></span></button>
+        </div>
+      </div>
+
+      <div class="axasp-admin-tools" id="dash-admin-tools">
+        <div class="axasp-tools-card">
+          <div class="axasp-tools-head"><h2>Admin Panel</h2><span>Administrator tools</span></div>
+          <div class="axasp-all-actions">
+            <button class="axasp-all-action" onclick="showSection('admin')"><span class="axasp-all-action-icon">◆</span><span><b>Admin Dashboard</b><small>Overview & controls</small></span></button>
+            <button class="axasp-all-action" onclick="showSection('admin-users')"><span class="axasp-all-action-icon">●</span><span><b>Manage Users</b><small>Accounts & status</small></span></button>
+            <button class="axasp-all-action" onclick="showSection('admin-wallets')"><span class="axasp-all-action-icon">▣</span><span><b>Wallet Addresses</b><small>Deposit addresses</small></span></button>
+            <button class="axasp-all-action" onclick="showSection('admin-transactions')"><span class="axasp-all-action-icon">↕</span><span><b>Transactions</b><small>Approve or reject</small></span></button>
+            <button class="axasp-all-action" onclick="showSection('admin-kyc')"><span class="axasp-all-action-icon">□</span><span><b>KYC Review</b><small>Identity submissions</small></span></button>
+            <button class="axasp-all-action" onclick="showSection('admin-profits')"><span class="axasp-all-action-icon">↗</span><span><b>Add Profit</b><small>Account adjustments</small></span></button>
+            <button class="axasp-all-action" onclick="showSection('admin-notifications')"><span class="axasp-all-action-icon">♧</span><span><b>Notifications</b><small>Broadcast messages</small></span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="axasp-market-strip" aria-label="Moving market ticker">
+        <div class="axasp-market-track">
+          <span class="axasp-market-item">₿ BTC/USDT <strong>$68,420</strong> <em>+3.20%</em></span>
+          <span class="axasp-market-item">Ξ ETH/USDT <strong>$3,850</strong> <em>+2.80%</em></span>
+          <span class="axasp-market-item">BNB/USDT <strong>$620</strong> <em class="down">-0.50%</em></span>
+          <span class="axasp-market-item">SOL/USDT <strong>$178</strong> <em>+5.10%</em></span>
+          <span class="axasp-market-item">XRP/USDT <strong>$0.62</strong> <em>+1.70%</em></span>
+          <span class="axasp-market-item">TRX/USDT <strong>$0.16</strong> <em>+0.90%</em></span>
+          <span class="axasp-market-item">₿ BTC/USDT <strong>$68,420</strong> <em>+3.20%</em></span>
+          <span class="axasp-market-item">Ξ ETH/USDT <strong>$3,850</strong> <em>+2.80%</em></span>
+          <span class="axasp-market-item">BNB/USDT <strong>$620</strong> <em class="down">-0.50%</em></span>
+          <span class="axasp-market-item">SOL/USDT <strong>$178</strong> <em>+5.10%</em></span>
+          <span class="axasp-market-item">XRP/USDT <strong>$0.62</strong> <em>+1.70%</em></span>
+          <span class="axasp-market-item">TRX/USDT <strong>$0.16</strong> <em>+0.90%</em></span>
+        </div>
+      </div>
+
       <div class="axasp-balance-grid">
         <button class="axasp-balance-card" onclick="showSection('portfolio')">
           <div class="axasp-balance-label">Total Assets</div>
@@ -774,6 +793,8 @@ canvas{display:block;max-width:100%}
           <button class="axasp-quote" onclick="openQuote('ETH/USDT')"><span>Ξ ETH / USDT</span><strong>$3,850</strong><em>+2.80%</em></button>
           <button class="axasp-quote" onclick="openQuote('BNB/USDT')"><span>BNB / USDT</span><strong>$620</strong><em class="down">-0.50%</em></button>
           <button class="axasp-quote" onclick="openQuote('SOL/USDT')"><span>SOL / USDT</span><strong>$178</strong><em>+5.10%</em></button>
+          <button class="axasp-quote" onclick="openQuote('XRP/USDT')"><span>XRP / USDT</span><strong>$0.62</strong><em>+1.70%</em></button>
+          <button class="axasp-quote" onclick="openQuote('TRX/USDT')"><span>TRX / USDT</span><strong>$0.16</strong><em>+0.90%</em></button>
         </div>
       </div>
 
@@ -1338,15 +1359,21 @@ function showSection(section){
 
 function updateNavUI(){
   const u=currentUser;
+  document.body.classList.toggle('axasp-app-mode',!!u);
   document.getElementById('nav-auth').classList.toggle('hidden',!!u);
   document.getElementById('nav-user').classList.toggle('hidden',!u);
   document.getElementById('nav-public').classList.toggle('hidden',!!u);
   if(u){
     document.getElementById('nav-username').textContent=u.name.split(' ')[0];
-    document.getElementById('sidebar-toggle').style.display=window.innerWidth<=1024?'flex':'none';
-    document.getElementById('admin-nav').style.display=u.role==='admin'?'block':'none';
+    document.getElementById('sidebar-toggle').style.display='none';
+    const adminTools=document.getElementById('dash-admin-tools');
+    if(adminTools)adminTools.style.display=u.role==='admin'?'block':'none';
+    const adminNav=document.getElementById('admin-nav');
+    if(adminNav)adminNav.style.display='none';
   } else {
     document.getElementById('sidebar-toggle').style.display='none';
+    const adminTools=document.getElementById('dash-admin-tools');
+    if(adminTools)adminTools.style.display='none';
   }
 }
 

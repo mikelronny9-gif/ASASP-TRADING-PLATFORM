@@ -1,15 +1,21 @@
 # AXASP Broker Exchange
 
-GitHub-ready single-page broker client dashboard.
+Dashboard-first AXASP broker interface based on the supplied reference design.
 
-## Run
+## Dashboard changes
+- Removed normal user navigation functions from the left sidebar.
+- Moved all client functions into the logged-in dashboard.
+- Added Portfolio, Trading Charts, Deposit, Withdraw, Transactions, Notifications, Referral, Spin & Win, Profile & KYC, Settings, Support and Sign Out actions.
+- Added an admin-only dashboard tools area for administrator accounts.
+- Updated the logged-in workspace to AXASP's light mint/teal visual system.
+- Added a larger Live Quotes panel plus a moving market ticker.
+- Preserved existing authentication, Firebase/Firestore integration, KYC, transactions and admin workflows.
 
-Open `index.html` in a modern browser or serve the folder with a static web server. The Capacitor web copy is in `www/index.html`.
+## Files
+- `index.html` - main web app
+- `www/index.html` - Capacitor web build
+- `package.json` - project metadata/dependencies
+- `capacitor.config.json` - Capacitor configuration
 
-## Dashboard
-
-After login, users land on an AXASP-style mobile-first dashboard with quick actions for Deposit, Withdraw, Help, Team, Activity, Invite Friends, Agent Program and Messages, plus account balances, withdrawal history and live quote shortcuts.
-
-## Important
-
-The client UI preserves the project's existing Firebase authentication/Firestore integration. Do not treat browser-side state as a secure source of truth for real-money balances, KYC, withdrawals or admin permissions; those operations should be enforced server-side with appropriate security rules.
+## GitHub Pages
+Use `index.html` at the repository root for GitHub Pages.
