@@ -1,0 +1,22 @@
+{
+  "name": "axasp-broker-exchange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "serve": "python3 -m http.server 4173",
+    "cap:sync": "npx cap sync",
+    "android": "npx cap open android",
+    "build": "npm run cap:sync"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0"
+  }
+}
