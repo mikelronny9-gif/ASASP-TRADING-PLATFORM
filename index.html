@@ -451,6 +451,98 @@ body:not(.axasp-app-mode) .text-muted{color:#6f8982}
 @media(max-width:760px){.axasp-dashboard .axasp-all-actions{grid-template-columns:repeat(3,1fr)}.axasp-dashboard .axasp-quotes-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.axasp-dashboard .axasp-all-actions{grid-template-columns:repeat(2,1fr)}.axasp-dashboard .axasp-quotes-grid{grid-template-columns:1fr}.axasp-dashboard .axasp-market-item{padding:8px 11px}}
 
+
+/* ================================================================
+   RESPONSIVE MEDIA + SPA NAVIGATION FIXES
+   ================================================================ */
+img,
+video,
+svg,
+canvas{
+  max-width:100%;
+}
+
+img{
+  display:block;
+  height:auto;
+}
+
+picture{
+  display:block;
+  max-width:100%;
+}
+
+picture img{
+  width:100%;
+  height:auto;
+}
+
+/* Prevent long content/cards/images from forcing horizontal scrolling. */
+.page,
+.app-section,
+.card,
+.modal,
+.main-content,
+.section,
+.hero,
+.axasp-dashboard{
+  min-width:0;
+  max-width:100%;
+}
+
+@media (max-width: 768px){
+  .axasp-dashboard{
+    margin-left:-16px;
+    margin-right:-16px;
+    width:calc(100% + 32px);
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .card,
+  .modal,
+  .section,
+  .hero-content{
+    max-width:100%;
+  }
+
+  table{
+    min-width:600px;
+  }
+}
+
+@media (max-width: 480px){
+  body{
+    overflow-x:hidden;
+  }
+
+  .modal-overlay{
+    padding:10px;
+  }
+
+  .modal{
+    max-height:94vh;
+    border-radius:14px;
+  }
+
+  .hero-title{
+    font-size:clamp(30px,9vw,44px);
+  }
+
+  .hero-sub{
+    font-size:15px;
+  }
+}
+
+/* Keep media inside cards/tiles without stretching the page. */
+.card img,
+.feature-card img,
+.plan-card img,
+.testimonial img{
+  max-width:100%;
+  height:auto;
+}
+
 </style>
 </head>
 <body>
@@ -2784,7 +2876,8 @@ function renderSettingsLang(){
   import { getAnalytics }                from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
   import { getAuth, signInWithEmailAndPassword,
            createUserWithEmailAndPassword,
-           signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+           signOut, onAuthStateChanged,
+           setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
   import { getFirestore, doc,
            setDoc, getDoc }              from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
@@ -3099,6 +3192,85 @@ function renderSettingsLang(){
       }
     } catch(_) {}
   });
+</script>
+
+
+<script>
+/* ================================================================
+   AXASP SPA BROWSER HISTORY
+   - Every internal navigate() creates a browser history entry.
+   - Back/Forward restores the previous app page/section.
+   - Does not interfere with Firebase authentication.
+   ================================================================ */
+(function(){
+  const originalNavigate = window.navigate;
+  if (typeof originalNavigate !== 'function') return;
+
+  const HISTORY_KEY = 'axasp-spa-history-v1';
+  let restoringHistory = false;
+
+  function currentRoute(){
+    const state = (typeof getPageState === 'function') ? getPageState() : {};
+    return {
+      page: state.page || 'landing',
+      section: state.section || ''
+    };
+  }
+
+  function sameRoute(a,b){
+    return a && b && a.page === b.page && a.section === b.section;
+  }
+
+  function routeFromHistoryState(state){
+    if (state && state.axaspRoute) return state.axaspRoute;
+    return currentRoute();
+  }
+
+  // Replace the first browser entry with the current app route.
+  const initial = currentRoute();
+  if (!history.state || !history.state.axaspRoute){
+    history.replaceState({axaspRoute: initial}, '', window.location.href);
+  }
+
+  window.navigate = function(page){
+    const before = currentRoute();
+
+    // Use the existing renderer.
+    originalNavigate(page);
+
+    const after = currentRoute();
+
+    // Only create a history entry when the route actually changed.
+    if (!restoringHistory && !sameRoute(before, after)){
+      history.pushState({axaspRoute: after}, '', window.location.href);
+    }
+  };
+
+  window.addEventListener('popstate', function(event){
+    restoringHistory = true;
+    try{
+      const route = routeFromHistoryState(event.state);
+
+      // App sections are represented by page='app' + section.
+      if (route.page === 'app' && route.section){
+        originalNavigate(route.section);
+      } else {
+        originalNavigate(route.page || 'landing');
+      }
+    } finally {
+      restoringHistory = false;
+    }
+  });
+
+  // Handle the case where the app's own initialization changes the route
+  // before the first user click.
+  window.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){
+      const route = currentRoute();
+      history.replaceState({axaspRoute: route}, '', window.location.href);
+    }, 0);
+  });
+})();
 </script>
 
 <!-- Smartsupp Live Chat script -->
