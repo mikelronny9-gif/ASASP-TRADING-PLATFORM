@@ -451,98 +451,6 @@ body:not(.axasp-app-mode) .text-muted{color:#6f8982}
 @media(max-width:760px){.axasp-dashboard .axasp-all-actions{grid-template-columns:repeat(3,1fr)}.axasp-dashboard .axasp-quotes-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.axasp-dashboard .axasp-all-actions{grid-template-columns:repeat(2,1fr)}.axasp-dashboard .axasp-quotes-grid{grid-template-columns:1fr}.axasp-dashboard .axasp-market-item{padding:8px 11px}}
 
-
-/* ================================================================
-   RESPONSIVE MEDIA + SPA NAVIGATION FIXES
-   ================================================================ */
-img,
-video,
-svg,
-canvas{
-  max-width:100%;
-}
-
-img{
-  display:block;
-  height:auto;
-}
-
-picture{
-  display:block;
-  max-width:100%;
-}
-
-picture img{
-  width:100%;
-  height:auto;
-}
-
-/* Prevent long content/cards/images from forcing horizontal scrolling. */
-.page,
-.app-section,
-.card,
-.modal,
-.main-content,
-.section,
-.hero,
-.axasp-dashboard{
-  min-width:0;
-  max-width:100%;
-}
-
-@media (max-width: 768px){
-  .axasp-dashboard{
-    margin-left:-16px;
-    margin-right:-16px;
-    width:calc(100% + 32px);
-    padding-left:16px;
-    padding-right:16px;
-  }
-
-  .card,
-  .modal,
-  .section,
-  .hero-content{
-    max-width:100%;
-  }
-
-  table{
-    min-width:600px;
-  }
-}
-
-@media (max-width: 480px){
-  body{
-    overflow-x:hidden;
-  }
-
-  .modal-overlay{
-    padding:10px;
-  }
-
-  .modal{
-    max-height:94vh;
-    border-radius:14px;
-  }
-
-  .hero-title{
-    font-size:clamp(30px,9vw,44px);
-  }
-
-  .hero-sub{
-    font-size:15px;
-  }
-}
-
-/* Keep media inside cards/tiles without stretching the page. */
-.card img,
-.feature-card img,
-.plan-card img,
-.testimonial img{
-  max-width:100%;
-  height:auto;
-}
-
 </style>
 </head>
 <body>
@@ -1363,7 +1271,6 @@ const SECTION_KEY = 'tc_v2_section';
 const SEED = {
   users: [
     {id:'admin0',email:'yomawisdom55@gmail.com',password:'mamaboy12',name:'Wisdom Admin',phone:'+1-555-0099',country:'Nigeria',lang:'en',role:'admin',balance:0,totalProfit:0,totalDeposit:0,totalWithdrawal:0,status:'active',kycStatus:'approved',spinsLeft:99,pin:'1234',referralCode:'AX-WISDOM',referredBy:'',createdAt:'2024-01-01'},
-    {id:'admin1',email:'admin@trustchain.com',password:'Admin@123',name:'AXASP Admin',phone:'+1-555-0100',country:'United States',lang:'en',role:'admin',balance:0,totalProfit:0,totalDeposit:0,totalWithdrawal:0,status:'active',kycStatus:'approved',spinsLeft:99,pin:'1234',referralCode:'AX-ADMIN',referredBy:'',createdAt:'2024-01-01'},
     {id:'user1',email:'demo@trustchain.com',password:'Demo@123',name:'Alex Johnson',phone:'+44-555-0200',country:'United Kingdom',lang:'en',role:'user',balance:5240.00,totalProfit:1320.50,totalDeposit:10000,totalWithdrawal:4000,status:'active',kycStatus:'approved',spinsLeft:2,pin:'1234',referralCode:'AX-DEMO01',referredBy:'',createdAt:'2024-03-15'},
     {id:'user2',email:'sarah@example.com',password:'pass1234',name:'Sarah Williams',phone:'+44-555-0201',country:'United Kingdom',lang:'en',role:'user',balance:1850.00,totalProfit:320.00,totalDeposit:2000,totalWithdrawal:0,status:'active',kycStatus:'pending',spinsLeft:3,pin:'1234',referralCode:'AX-SARAH1',referredBy:'AX-DEMO01',createdAt:'2024-04-10'},
     {id:'user3',email:'carlos@example.com',password:'pass1234',name:'Carlos Mendez',phone:'+52-555-0300',country:'Mexico',lang:'es',role:'user',balance:420.00,totalProfit:80.00,totalDeposit:500,totalWithdrawal:0,status:'suspended',kycStatus:'none',spinsLeft:3,pin:'1234',referralCode:'AX-CARLO1',referredBy:'AX-DEMO01',createdAt:'2024-05-20'}
@@ -2876,20 +2783,19 @@ function renderSettingsLang(){
   import { getAnalytics }                from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
   import { getAuth, signInWithEmailAndPassword,
            createUserWithEmailAndPassword,
-           signOut, onAuthStateChanged,
-           setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+           signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
   import { getFirestore, doc,
            setDoc, getDoc }              from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyDhY4EicP2MLASBcEXBIAbliQSKH6RdIeo",
-    authDomain: "trust-chain-57e65.firebaseapp.com",
-    projectId: "trust-chain-57e65",
-    storageBucket: "trust-chain-57e65.firebasestorage.app",
-    messagingSenderId: "420926013890",
-    appId: "1:420926013890:web:4db0638402b4e8572ed65b",
-    measurementId: "G-5XSQ1XQV3B"
-  };
+  apiKey: "AIzaSyBH8yFVNzsDu7Az6wvE_JG4cuPd-SrK7T4",
+  authDomain: "axsp-46a83.firebaseapp.com",
+  projectId: "axsp-46a83",
+  storageBucket: "axsp-46a83.firebasestorage.app",
+  messagingSenderId: "423176542159",
+  appId: "1:423176542159:web:9c00def3dcf49889d264ba",
+  measurementId: "G-S9PXR2X6DE"
+};
 
   const app      = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
@@ -2897,7 +2803,7 @@ function renderSettingsLang(){
   const db     = getFirestore(app);
 
   // Admin emails → always local auth only, never Firebase
-  const ADMIN_EMAILS = ['yomawisdom55@gmail.com', 'admin@trustchain.com'];
+  const ADMIN_EMAILS = ['yomawisdom55@gmail.com'];
 
   // ── Firestore: save complete user snapshot (profile + personal data) ──
   async function fsSave(uid, payload) {
@@ -3192,85 +3098,6 @@ function renderSettingsLang(){
       }
     } catch(_) {}
   });
-</script>
-
-
-<script>
-/* ================================================================
-   AXASP SPA BROWSER HISTORY
-   - Every internal navigate() creates a browser history entry.
-   - Back/Forward restores the previous app page/section.
-   - Does not interfere with Firebase authentication.
-   ================================================================ */
-(function(){
-  const originalNavigate = window.navigate;
-  if (typeof originalNavigate !== 'function') return;
-
-  const HISTORY_KEY = 'axasp-spa-history-v1';
-  let restoringHistory = false;
-
-  function currentRoute(){
-    const state = (typeof getPageState === 'function') ? getPageState() : {};
-    return {
-      page: state.page || 'landing',
-      section: state.section || ''
-    };
-  }
-
-  function sameRoute(a,b){
-    return a && b && a.page === b.page && a.section === b.section;
-  }
-
-  function routeFromHistoryState(state){
-    if (state && state.axaspRoute) return state.axaspRoute;
-    return currentRoute();
-  }
-
-  // Replace the first browser entry with the current app route.
-  const initial = currentRoute();
-  if (!history.state || !history.state.axaspRoute){
-    history.replaceState({axaspRoute: initial}, '', window.location.href);
-  }
-
-  window.navigate = function(page){
-    const before = currentRoute();
-
-    // Use the existing renderer.
-    originalNavigate(page);
-
-    const after = currentRoute();
-
-    // Only create a history entry when the route actually changed.
-    if (!restoringHistory && !sameRoute(before, after)){
-      history.pushState({axaspRoute: after}, '', window.location.href);
-    }
-  };
-
-  window.addEventListener('popstate', function(event){
-    restoringHistory = true;
-    try{
-      const route = routeFromHistoryState(event.state);
-
-      // App sections are represented by page='app' + section.
-      if (route.page === 'app' && route.section){
-        originalNavigate(route.section);
-      } else {
-        originalNavigate(route.page || 'landing');
-      }
-    } finally {
-      restoringHistory = false;
-    }
-  });
-
-  // Handle the case where the app's own initialization changes the route
-  // before the first user click.
-  window.addEventListener('DOMContentLoaded', function(){
-    setTimeout(function(){
-      const route = currentRoute();
-      history.replaceState({axaspRoute: route}, '', window.location.href);
-    }, 0);
-  });
-})();
 </script>
 
 <!-- Smartsupp Live Chat script -->
