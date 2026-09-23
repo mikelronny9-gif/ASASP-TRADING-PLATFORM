@@ -1382,11 +1382,78 @@ let spinAnimFrame = null;
 let spinAngle = 0;
 let isSpinning = false;
 
+// Auto logout after 20 minutes without activity. The timestamp is stored in
+// localStorage so leaving the site, closing the tab, or returning later is
+// treated as inactivity too.
+const AXASP_IDLE_TIMEOUT = 20 * 60 * 1000;
+const AXASP_LAST_ACTIVITY_KEY = 'axasp_last_activity';
+const AXASP_AUTO_LOGOUT_KEY = 'axasp_auto_logout';
+let axaspIdleTimer = null;
+
 function getSession(){try{return JSON.parse(localStorage.getItem(SESSION_KEY));}catch{return null;}}
-function setSession(u){localStorage.setItem(SESSION_KEY,JSON.stringify(u));}
-function clearSession(){localStorage.removeItem(SESSION_KEY);localStorage.removeItem(PAGE_KEY);localStorage.removeItem(SECTION_KEY);}
+function setSession(u){
+  localStorage.setItem(SESSION_KEY,JSON.stringify(u));
+  localStorage.setItem(AXASP_LAST_ACTIVITY_KEY,String(Date.now()));
+  localStorage.removeItem(AXASP_AUTO_LOGOUT_KEY);
+  startAxaspIdleTimer();
+}
+function clearSession(){
+  localStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem(PAGE_KEY);
+  localStorage.removeItem(SECTION_KEY);
+  localStorage.removeItem(AXASP_LAST_ACTIVITY_KEY);
+}
 function savePageState(page,section){localStorage.setItem(PAGE_KEY,page);if(section)localStorage.setItem(SECTION_KEY,section);}
 function getPageState(){return{page:localStorage.getItem(PAGE_KEY)||'',section:localStorage.getItem(SECTION_KEY)||'dashboard'};}
+
+function axaspTouchActivity(){
+  if(!currentUser) return;
+  const now=Date.now();
+  const last=Number(localStorage.getItem(AXASP_LAST_ACTIVITY_KEY)||0);
+  // Avoid writing localStorage on every mousemove.
+  if(!last || now-last>30000){
+    localStorage.setItem(AXASP_LAST_ACTIVITY_KEY,String(now));
+  }
+}
+
+function axaspSessionExpired(){
+  const session=getSession();
+  if(!session) return false;
+  const last=Number(localStorage.getItem(AXASP_LAST_ACTIVITY_KEY)||0);
+  return !last || (Date.now()-last)>=AXASP_IDLE_TIMEOUT;
+}
+
+function axaspHandleAutoLogout(){
+  if(!currentUser || !axaspSessionExpired()) return false;
+  localStorage.setItem(AXASP_AUTO_LOGOUT_KEY,'1');
+  if(axaspIdleTimer){clearInterval(axaspIdleTimer);axaspIdleTimer=null;}
+  currentUser=null;
+  clearSession();
+  updateNavUI();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const landing=document.getElementById('page-landing');
+  if(landing) landing.classList.add('active');
+  window.scrollTo(0,0);
+  if(typeof showToast==='function') showToast('You were signed out after 20 minutes of inactivity.','info');
+  return true;
+}
+
+function startAxaspIdleTimer(){
+  if(axaspIdleTimer) clearInterval(axaspIdleTimer);
+  axaspIdleTimer=setInterval(()=>{
+    if(axaspSessionExpired()) axaspHandleAutoLogout();
+  },30000);
+}
+
+['click','keydown','touchstart','scroll','mousemove'].forEach(evt=>{
+  window.addEventListener(evt,axaspTouchActivity,{passive:true});
+});
+window.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible' && axaspSessionExpired()) axaspHandleAutoLogout();
+});
+window.addEventListener('storage',()=>{
+  if(currentUser && axaspSessionExpired()) axaspHandleAutoLogout();
+});
 
 // ================================================================
 //  NAVIGATION
@@ -2642,13 +2709,20 @@ function init(){
   renderFaqs('faq-public');
   initLang();
 
-  // Restore session
+  // Restore session. A session that has been inactive for 20 minutes is expired.
+  if(getSession() && axaspSessionExpired()){
+    localStorage.setItem(AXASP_AUTO_LOGOUT_KEY,'1');
+    clearSession();
+  }
   const session=getSession();
   if(session){
     const data=getData();
     const u=data.users.find(x=>x.id===session.id);
     if(u&&u.status!=='suspended'){
-      currentUser=u;updateNavUI();initLang();
+      currentUser=u;
+      localStorage.setItem(AXASP_LAST_ACTIVITY_KEY,String(localStorage.getItem(AXASP_LAST_ACTIVITY_KEY)||Date.now()));
+      startAxaspIdleTimer();
+      updateNavUI();initLang();
       const {page,section}=getPageState();
       if(page==='app'&&section){
         document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -3178,6 +3252,11 @@ function renderSettingsLang(){
   // ── cross-device auto-restore when Firebase session is active ────
   onAuthStateChanged(fbAuth, async (firebaseUser) => {
     if (currentUser) return;           // already restored from local session
+    if (localStorage.getItem(AXASP_AUTO_LOGOUT_KEY)==='1') {
+      try { await signOut(fbAuth); } catch(_) {}
+      localStorage.removeItem(AXASP_AUTO_LOGOUT_KEY);
+      return;
+    }
     if (!firebaseUser) return;
     if (ADMIN_EMAILS.includes(firebaseUser.email)) return;
 
