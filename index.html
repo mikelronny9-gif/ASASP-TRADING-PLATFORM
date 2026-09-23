@@ -106,6 +106,10 @@ p{line-height:1.6}
 .nav-links a{padding:7px 14px;border-radius:8px;font-size:14px;font-weight:500;color:var(--muted);transition:var(--trans);cursor:pointer}
 .nav-links a:hover{color:var(--text);background:var(--card)}
 .nav-right{display:flex;gap:8px;align-items:center}
+.nav-previous{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;background:#fff;border:1px solid #cfe2dc;color:#48675f;cursor:pointer;transition:var(--trans)}
+.nav-previous:hover{background:#eaf8f3;border-color:#53c9a8;color:#118b6e}
+.nav-previous.hidden{display:none!important}
+@media(max-width:600px){.nav-previous{padding:6px 9px;font-size:12px}.nav-previous span{display:none}}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
 .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:999;padding:12px}
@@ -488,6 +492,7 @@ body:not(.axasp-app-mode) .text-muted{color:#6f8982}
       <a onclick="scrollToSection('about')">About</a>
     </div>
     <div class="nav-right" id="nav-auth">
+      <button class="nav-previous hidden" id="nav-previous" type="button" onclick="goToPreviousScreen()" aria-label="Go to previous screen">← <span>Previous</span></button>
       <button class="btn btn-outline btn-sm" onclick="navigate('login')">Login</button>
       <button class="btn btn-gold btn-sm" onclick="navigate('register')">Sign Up</button>
     </div>
@@ -1388,25 +1393,77 @@ function getPageState(){return{page:localStorage.getItem(PAGE_KEY)||'',section:l
 let currentSection = 'dashboard';
 let sidebarOpen = false;
 
-function navigate(page){
-  // Hide all pages
+const AXASP_APP_PAGES=['dashboard','portfolio','trading','deposit','withdraw','transactions','notifications','referral','spin','profile','settings','support','admin','admin-users','admin-wallets','admin-transactions','admin-kyc','admin-profits','admin-notifications'];
+
+function axaspRouteState(page, section=''){
+  return {axasp:true, page, section:section||''};
+}
+
+function axaspCurrentRoute(){
+  const saved=getPageState();
+  return saved.page==='app'
+    ? axaspRouteState('app',saved.section||'dashboard')
+    : axaspRouteState(saved.page||'landing','');
+}
+
+function axaspUpdatePreviousButton(){
+  const btn=document.getElementById('nav-previous');
+  if(!btn) return;
+  // Only hide it on the first route in this tab. Browser Back still works normally.
+  btn.classList.toggle('hidden',history.length<=1);
+}
+
+function goToPreviousScreen(){
+  if(history.length>1){
+    history.back();
+  }else if(currentUser){
+    navigate('dashboard');
+  }else{
+    navigate('landing');
+  }
+}
+
+function navigate(page, fromHistory=false){
+  const isAppPage=AXASP_APP_PAGES.includes(page);
+
+  // Add a real browser-history entry for every screen change.
+  if(!fromHistory){
+    const nextState=isAppPage
+      ? axaspRouteState('app',page)
+      : axaspRouteState(page,'');
+    const current=axaspCurrentRoute();
+    if(!current || current.page!==nextState.page || current.section!==nextState.section){
+      history.pushState(nextState,'',window.location.href.split('#')[0]);
+    }
+  }
+
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const isAppPage=['dashboard','portfolio','trading','deposit','withdraw','transactions','notifications','referral','spin','profile','settings','support','admin','admin-users','admin-wallets','admin-transactions','admin-kyc','admin-profits','admin-notifications'].includes(page);
+
   if(isAppPage){
     document.getElementById('page-app').classList.add('active');
-    showSection(page);
-    savePageState('app',page);
+    showSection(page,true);
   } else {
     const el=document.getElementById('page-'+page);
     if(el){el.classList.add('active');}
     else{document.getElementById('page-landing').classList.add('active');}
     savePageState(page,'');
   }
+
   window.scrollTo(0,0);
   updateNavUI();
+  axaspUpdatePreviousButton();
 }
 
-function showSection(section){
+function showSection(section, fromHistory=false){
+  // Direct sidebar/button navigation also gets its own browser-history entry.
+  if(!fromHistory){
+    const nextState=axaspRouteState('app',section);
+    const current=axaspCurrentRoute();
+    if(!current || current.page!==nextState.page || current.section!==nextState.section){
+      history.pushState(nextState,'',window.location.href.split('#')[0]);
+    }
+  }
+
   document.querySelectorAll('.app-section').forEach(s=>s.classList.add('hidden'));
   const el=document.getElementById('section-'+section);
   if(el){el.classList.remove('hidden');el.classList.add('animate-fade');}
@@ -1415,7 +1472,33 @@ function showSection(section){
   savePageState('app',section);
   loadSection(section);
   if(window.innerWidth<=1024)closeSidebar();
+  axaspUpdatePreviousButton();
 }
+
+// Restore a screen when the browser Back/Forward buttons are used.
+function axaspRestoreHistoryRoute(state){
+  const route=state&&state.axasp
+    ? state
+    : axaspCurrentRoute();
+
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+
+  if(route.page==='app' && route.section){
+    document.getElementById('page-app').classList.add('active');
+    showSection(route.section,true);
+  }else{
+    const el=document.getElementById('page-'+route.page);
+    (el||document.getElementById('page-landing')).classList.add('active');
+    savePageState(el?route.page:'landing','');
+    window.scrollTo(0,0);
+    updateNavUI();
+  }
+  axaspUpdatePreviousButton();
+}
+
+window.addEventListener('popstate',function(event){
+  axaspRestoreHistoryRoute(event.state);
+});
 
 function updateNavUI(){
   const u=currentUser;
@@ -2537,6 +2620,16 @@ document.addEventListener('DOMContentLoaded',()=>setTimeout(axaspUpdateScrollInd
 
 function init(){
   initData();
+  // Start this tab with one clean history entry. Every internal screen
+  // navigation after this point becomes a real browser Back/Forward step.
+  if(!history.state || !history.state.axasp){
+    const initial=getPageState();
+    history.replaceState(
+      axaspRouteState(initial.page||'landing',initial.section||''),
+      '',
+      window.location.href.split('#')[0]
+    );
+  }
   populateCountries();
   buildLiveProof();
   renderFaqs('faq-public');
@@ -2553,9 +2646,9 @@ function init(){
       if(page==='app'&&section){
         document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
         document.getElementById('page-app').classList.add('active');
-        showSection(section);
+        showSection(section,true);
       } else {
-        navigate('dashboard');
+        navigate('dashboard',true);
       }
     } else {
       clearSession();navigate('landing');
@@ -2574,6 +2667,7 @@ function init(){
     if(st)st.style.display=currentUser&&mob?'flex':'none';
   }
   window.addEventListener('resize',checkVp);checkVp();
+  axaspUpdatePreviousButton();
 }
 
 window.addEventListener('DOMContentLoaded',init);
