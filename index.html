@@ -44,7 +44,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans Tibetan',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;outline:none;font-family:inherit}
 input,select,textarea{font-family:inherit;outline:none}
@@ -1323,7 +1323,7 @@ function deepClone(o){return JSON.parse(JSON.stringify(o));}
 const COUNTRIES = [
   {name:'Afghanistan',lang:'ps'},{name:'Albania',lang:'sq'},{name:'Algeria',lang:'ar'},
   {name:'Argentina',lang:'es'},{name:'Australia',lang:'en'},{name:'Austria',lang:'de'},
-  {name:'Bangladesh',lang:'bn'},{name:'Belgium',lang:'nl'},{name:'Bolivia',lang:'es'},
+  {name:'Bangladesh',lang:'bn'},{name:'Bhutan',lang:'dz'},{name:'Belgium',lang:'nl'},{name:'Bolivia',lang:'es'},
   {name:'Brazil',lang:'pt'},{name:'Canada',lang:'en'},{name:'Chile',lang:'es'},
   {name:'China',lang:'zh'},{name:'Colombia',lang:'es'},{name:'Croatia',lang:'hr'},
   {name:'Czech Republic',lang:'cs'},{name:'Denmark',lang:'da'},{name:'Ecuador',lang:'es'},
@@ -1348,7 +1348,7 @@ const COUNTRIES = [
   {name:'Venezuela',lang:'es'},{name:'Vietnam',lang:'vi'},{name:'Yemen',lang:'ar'},
   {name:'Zimbabwe',lang:'en'},{name:'Other',lang:'en'}
 ];
-const LANG_NAMES = {en:'English',es:'Spanish',fr:'French',de:'German',ar:'Arabic',zh:'Chinese (Mandarin)',pt:'Portuguese',hi:'Hindi',bn:'Bengali',ru:'Russian',ja:'Japanese',ko:'Korean',it:'Italian',nl:'Dutch',tr:'Turkish',pl:'Polish',vi:'Vietnamese',th:'Thai',id:'Indonesian',ms:'Malay',fa:'Persian',sw:'Swahili',ur:'Urdu',fil:'Filipino',am:'Amharic',he:'Hebrew',el:'Greek',sq:'Albanian',hr:'Croatian',cs:'Czech',da:'Danish',fi:'Finnish',hu:'Hungarian',no:'Norwegian',ro:'Romanian',sv:'Swedish',uk:'Ukrainian'};
+const LANG_NAMES = {dz:'Dzongkha (Bhutan)',en:'English (US)', 'en-GB':'English (UK)',es:'Spanish',fr:'French',de:'German',ar:'Arabic',zh:'Chinese (Mandarin)',pt:'Portuguese',hi:'Hindi',bn:'Bengali',ru:'Russian',ja:'Japanese',ko:'Korean',it:'Italian',nl:'Dutch',tr:'Turkish',pl:'Polish',vi:'Vietnamese',th:'Thai',id:'Indonesian',ms:'Malay',fa:'Persian',sw:'Swahili',ur:'Urdu',fil:'Filipino',am:'Amharic',he:'Hebrew',el:'Greek',sq:'Albanian',hr:'Croatian',cs:'Czech',da:'Danish',fi:'Finnish',hu:'Hungarian',no:'Norwegian',ro:'Romanian',sv:'Swedish',uk:'Ukrainian'};
 
 function populateCountries(){
   const sel=document.getElementById('reg-country');
@@ -2757,7 +2757,7 @@ window.addEventListener('beforeunload',()=>{if(profitInterval)clearInterval(prof
 // ================================================================
 //  LANGUAGE SYSTEM
 // ================================================================
-const LANG_FLAGS={en:'🇺🇸',es:'🇪🇸',fr:'🇫🇷',de:'🇩🇪',ar:'🇸🇦',zh:'🇨🇳',pt:'🇧🇷',hi:'🇮🇳',bn:'🇧🇩',ru:'🇷🇺',ja:'🇯🇵',ko:'🇰🇷',it:'🇮🇹',nl:'🇳🇱',tr:'🇹🇷',pl:'🇵🇱',vi:'🇻🇳',th:'🇹🇭',id:'🇮🇩',ms:'🇲🇾',fa:'🇮🇷',sw:'🇰🇪',ur:'🇵🇰',fil:'🇵🇭',am:'🇪🇹',he:'🇮🇱',el:'🇬🇷',sq:'🇦🇱',hr:'🇭🇷',cs:'🇨🇿',da:'🇩🇰',fi:'🇫🇮',hu:'🇭🇺',no:'🇳🇴',ro:'🇷🇴',sv:'🇸🇪',uk:'🇺🇦'};
+const LANG_FLAGS={en:'🇺🇸','en-GB':'🇬🇧',es:'🇪🇸',fr:'🇫🇷',de:'🇩🇪',ar:'🇸🇦',zh:'🇨🇳',pt:'🇧🇷',hi:'🇮🇳',bn:'🇧🇩',ru:'🇷🇺',ja:'🇯🇵',ko:'🇰🇷',it:'🇮🇹',nl:'🇳🇱',tr:'🇹🇷',pl:'🇵🇱',vi:'🇻🇳',th:'🇹🇭',id:'🇮🇩',ms:'🇲🇾',fa:'🇮🇷',sw:'🇰🇪',ur:'🇵🇰',fil:'🇵🇭',am:'🇪🇹',he:'🇮🇱',el:'🇬🇷',sq:'🇦🇱',hr:'🇭🇷',cs:'🇨🇿',da:'🇩🇰',fi:'🇫🇮',hu:'🇭🇺',no:'🇳🇴',ro:'🇷🇴',sv:'🇸🇪',uk:'🇺🇦',dz:'🇧🇹'};
 
 const T={
   en:{features:'Features',plans:'Plans',about:'About',login:'Login',signup:'Sign Up',logout:'Logout',dashboard:'Dashboard',portfolio:'Portfolio',trading:'Trading Charts',deposit:'Deposit',withdraw:'Withdraw',transactions:'Transactions',notifications:'Notifications',referral:'Referral',spin:'Spin & Win',profile:'Profile & KYC',settings:'Settings',support:'Support',signout:'Sign Out',main:'Main',funds:'Funds',account:'Account',admin_panel:'Admin Panel',hero_title:'Institutional Grade <span class="accent">Crypto Wealth</span> Management',hero_sub:'AXASP Broker Exchange provides secure, transparent, and high-yield investment vehicles for digital assets. Join thousands of investors earning consistent daily returns.',start_investing:'Start Investing →',client_portal:'Client Portal',ready:'Ready to grow your wealth?',join_cta:'Join 47,000+ investors already earning with AXASP Broker Exchange',create_account:'Create Free Account →',settings_title:'Settings',settings_sub:'Manage your account preferences and security',change_password:'Change Password',security_pin:'Security PIN',update_password:'Update Password',update_pin:'Update PIN',danger_zone:'Danger Zone',language:'Language',language_sub:'Choose your preferred display language'},
@@ -2778,18 +2778,32 @@ const T={
   sv:{features:'Funktioner',plans:'Planer',about:'Om oss',login:'Logga in',signup:'Registrera dig',logout:'Logga ut',dashboard:'Instrumentpanel',portfolio:'Portfölj',trading:'Diagram',deposit:'Insättning',withdraw:'Uttag',transactions:'Transaktioner',notifications:'Aviseringar',referral:'Referens',spin:'Snurra & Vinn',profile:'Profil & KYC',settings:'Inställningar',support:'Support',signout:'Logga ut',main:'Huvud',funds:'Fonder',account:'Konto',admin_panel:'Adminpanel',hero_title:'Institutionell <span class="accent">kryptoförmögenhets</span>förvaltning',hero_sub:'AXASP Broker Exchange erbjuder säkra, transparenta och högavkastande investeringsfordon för digitala tillgångar.',start_investing:'Börja investera →',client_portal:'Kundportal',ready:'Redo att växa din förmögenhet?',join_cta:'Gå med 47 000+ investerare som redan tjänar med AXASP Broker Exchange',create_account:'Skapa gratis konto →',settings_title:'Inställningar',settings_sub:'Hantera dina kontoinställningar och säkerhet',change_password:'Ändra lösenord',security_pin:'Säkerhets-PIN',update_password:'Uppdatera lösenord',update_pin:'Uppdatera PIN',danger_zone:'Farlig zon',language:'Språk',language_sub:'Välj ditt föredragna språk'},
 };
 
+// Dzongkha (Bhutan) translations for the main navigation and common settings.
+T.dz={features:'ཁྱད་ཆོས།',plans:'འཆར་གཞི།',about:'སྐོར་ལས།',login:'ནང་འཛུལ།',signup:'ཐོ་བཀོད།',logout:'ཕྱིར་ཐོན།',dashboard:'ཚོད་འཛིན་ལྷན་ཐབས།',portfolio:'མ་རྩའི་ཐོ་གཞུང་།',trading:'ཚོང་འབྲེལ་རི་མོ།',deposit:'དངུལ་བཙུགས།',withdraw:'དངུལ་བཏོན།',transactions:'ལག་ལེན་ཚུ།',notifications:'བརྡ་བསྐུལ།',referral:'གྲོགས་འབོད།',spin:'བསྐོར་ནས་ཐོབ།',profile:'གསལ་སྡུད་དང་ KYC',settings:'སྒྲིག་འཛུགས།',support:'རོགས་རམ།',signout:'ཕྱིར་ཐོན།',main:'གཙོ་བོ།',funds:'མ་དངུལ།',account:'རྩིས་ཁྲ།',admin_panel:'འཛིན་སྐྱོང་ལྷན་ཐབས།',hero_title:'ལས་ཁུངས་གནས་ཚད་ཀྱི <span class="accent">ཀྲིབ་ཊོ་རྒྱུ་ནོར་</span> འཛིན་སྐྱོང་།',hero_sub:'AXASP Broker Exchange གིས་ཌི་ཇི་ཊལ་རྒྱུ་ནོར་གྱི་དོན་ལུ་ཉེན་སྲུང་ཅན་དང་། དྭངས་གསལ་ཅན་གྱི་མ་རྩ་བཙུགས་ཐབས་ཚུ་སྤྲོདཔ་ཨིན།',start_investing:'མ་རྩ་བཙུགས་འགོ་བཙུགས། →',client_portal:'ཚོང་མགྲོན་པའི་སྒོ་ར།',ready:'ཁྱོད་རའི་རྒྱུ་ནོར་ཡར་སེང་གཏང་ནི་གྲ་སྒྲིག་ཨིན་ན།',join_cta:'AXASP Broker Exchange དང་མཉམ་དུ་མ་རྩ་བཙུགས་མཁན་ཚུ་དང་མཉམ་འབྲེལ་འབད།',create_account:'རིན་མེད་རྩིས་ཁྲ་བཟོ། →',settings_title:'སྒྲིག་འཛུགས།',settings_sub:'ཁྱོད་ཀྱི་རྩིས་ཁྲའི་གདམ་ཁ་དང་ཉེན་སྲུང་འཛིན་སྐྱོང་འབད།',change_password:'ཆོག་ཡིག་སོར།',security_pin:'ཉེན་སྲུང་ PIN',update_password:'ཆོག་ཡིག་དུས་མཐུན་བཟོ།',update_pin:'PIN དུས་མཐུན་བཟོ།',danger_zone:'ཉེན་ཁའི་ས་ཁོངས།',language:'སྐད་ཡིག',language_sub:'ཁྱོད་ཀྱིས་དགའ་མོས་ཡོད་པའི་སྐད་ཡིག་གདམ།'};
+
+// British English uses the same base translations with UK wording where applicable.
+T['en-GB']={...T.en, features:'Features', plans:'Plans', about:'About', signup:'Sign up', hero_title:'Institutional Grade <span class="accent">Crypto Wealth</span> Management', hero_sub:'AXASP Broker Exchange provides information about digital assets and investment services.', start_investing:'Start Investing →', settings_sub:'Manage your account preferences and security', language_sub:'Choose your preferred display language'};
+
 // Fallback all other languages to English
 Object.keys(LANG_NAMES).forEach(l=>{if(!T[l])T[l]={...T.en};});
 
 let currentLang='en';
 let langDropdownOpen=false;
 
-function getLangPref(){return localStorage.getItem('tc_lang')||'en';}
+function getLangPref(){
+  const saved=localStorage.getItem('tc_lang');
+  if(saved && (saved==='en-GB'||T[saved])) return saved;
+  // On a first visit, follow the browser's preferred language when supported.
+  const browser=(navigator.language||'en').toLowerCase();
+  if(browser==='en-gb'||browser.startsWith('en-gb-')) return 'en-GB';
+  const base=browser.split('-')[0];
+  return T[base] ? base : 'en';
+}
 function saveLangPref(l){localStorage.setItem('tc_lang',l);}
 
 function initLang(){
   currentLang=getLangPref();
-  if(currentUser&&currentUser.lang&&T[currentUser.lang])currentLang=currentUser.lang;
+  if(currentUser&&currentUser.lang&&(T[currentUser.lang]||currentUser.lang==='en-GB'))currentLang=currentUser.lang;
   applyTranslations();
   updateLangBtn();
 }
